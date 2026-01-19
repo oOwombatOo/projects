@@ -14,39 +14,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1768425437
+  lastShownTimestamp: 1768656447
   lastUpdateResponse:
-    version: 1.00
+    version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1768425437
+  checkedLastUpdateTimestamp: 1768656447
   lastQOTDResponse:
-    questionId: 163
-    questionText: What is the purpose of Unity Hub?
-    answerA: Provide a space for the community to interact
-    answerB: Manage different Unity versions and Projects
-    answerC: Dashboard for Unity services
+    questionId: 262
+    questionText: 'What will be the value of isOne?
+
+      <p>float oneThird = 1f
+      / 3f;</p>
+
+      <p>bool isOne = (oneThird * 3f) == 1f;</p>'
+    answerA: true
+    answerB: false
+    answerC: 
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1768425437
+  lastQotdTimestamp: 1768656447
   lastDynamicHeaderResponse:
-    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleBundleSyntyMar25.png
-    topText: Make ANY game with these awesome Assets! (96% OFF ENDS SOON!)
-    topLink: humblebundle
-    bottomText: Learn Unity DOTS for MASSIVE Performance Boosts! (and make an RTS)
-    bottomLink: dotscourse
-  lastDynamicHeaderTimestamp: 1768425437
+    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/codeMonkeyToolkit50Off.png
+    topText: Get my Toolkit! 40 Tools and Elements to help you make games BETTER
+      and FASTER!
+    topLink: toolkit
+    bottomText: My 10+ Years of C# Knowledge in 1 Course!
+    bottomLink: csharpcourse
+  lastDynamicHeaderTimestamp: 1768656447
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1768425437
+  websiteLatestMessageTimestamp: 1768656447
   websiteLatestVideos:
     videos:
-    - youTubeId: ZIg7VoD9ptI
-      title: The FUTURE of Unity in 2025 and BEYOND!
-    - youTubeId: W_XOZAWJF24
-      title: I made the MOST PROFITABLE Game as a Test!
-    - youTubeId: J0KMvH-yFmA
-      title: TOP 10 NEW Games, Made with Unity! (FEBRUARY 2025)
-    - youTubeId: DOSLOa7cnoE
-      title: I SHOULD have done this a long time ago, and YOU too!
-  websiteLatestVideosTimestamp: 1768425437
+    - youTubeId: cWKA_FTprj0
+      title: TOP 10 NEW Games, Made with Unity! (DECEMBER 2025)
+    - youTubeId: mJk727yG7qw
+      title: Tips from making 2-3-4 Games!
+    - youTubeId: Jgw5Z40Q1vc
+      title: Learn Problem Solving (FREE Course, MOST VALUABLE skill)
+    - youTubeId: t_-jmK-qXss
+      title: Learn the MOST VALUABLE Skill Tomorrow!
+  websiteLatestVideosTimestamp: 1768656447

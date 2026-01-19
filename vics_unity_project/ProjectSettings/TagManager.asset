@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Fake 3D Sprites
-  - Fake 3D Objects
+  - 
+  - 
   - 
   - 
   - 
@@ -41,13 +41,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: New Layer 1
+  - name: Sprite Silouhettes
     uniqueID: 2549946905
     locked: 0
-  - name: New Layer 2
+  - name: Sprites
     uniqueID: 1079639919
     locked: 0
   m_RenderingLayers:
   - Default
   - 3D objects layer
   - 2D sprites layer
+  - Silouhettes

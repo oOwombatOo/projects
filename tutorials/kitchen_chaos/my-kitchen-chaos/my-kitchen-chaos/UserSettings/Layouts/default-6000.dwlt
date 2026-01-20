@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 2573
-    y: 40
+    x: 2570
+    y: 37
     width: 2534
     height: 1362
   m_ShowMode: 4
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 24
+  controlID: 20
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -1062,7 +1062,7 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1085,8 +1085,8 @@ MonoBehaviour:
       m_Data: 56960
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 49312
     - m_Data: 49314
+    - m_Data: 49316
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1114,17 +1114,18 @@ MonoBehaviour:
       m_ResourceFile: 
   m_AssetTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: []
+    m_SelectedIDs:
+    - m_Data: -19568
     m_LastClickedID:
-      m_Data: 0
+      m_Data: -19568
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 49312
     - m_Data: 49314
+    - m_Data: 49316
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: MyPlayerAnimator
+      m_OriginalName: MyPlayerAnimator
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
@@ -1132,10 +1133,10 @@ MonoBehaviour:
         width: 0
         height: 0
       m_UserData:
-        m_Data: 0
+        m_Data: -19568
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 6}
@@ -1147,8 +1148,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs:
+    - m_Data: -19568
+    m_LastClickedInstanceID: -19568
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs:
     - m_Data: 50108
@@ -1962,7 +1964,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.18051691, y: -0.6293247, z: 0.15348999, w: -0.740142}
     speed: 2
-    m_Value: {x: 0.18051691, y: 0.6293247, z: -0.15348998, w: 0.7401419}
+    m_Value: {x: -0.18051644, y: -0.629323, z: 0.15348959, w: -0.74014}
   m_Size:
     m_Target: 3.0875232
     speed: 2

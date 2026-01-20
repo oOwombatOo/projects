@@ -5,6 +5,8 @@ public class Player : MonoBehaviour
 
 	[SerializeField] private float moveSpeed = 7;
 
+	private bool isWalking = false;
+
 	// Update is called once per frame
 	private void Update()
 	{
@@ -49,6 +51,13 @@ public class Player : MonoBehaviour
 		// 1 means "all the way at the second vector", and 0.5 means "halfway between the two".
 		// The Time.delatTime just gives me a nice result.
 		transform.forward = Vector3.Slerp(currentFacingVector, moveDirection, Time.deltaTime * 7);
+
+		isWalking = moveDirection != Vector3.zero;
+	}
+
+	public bool IsWalking()
+	{
+		return isWalking;
 	}
 }
 

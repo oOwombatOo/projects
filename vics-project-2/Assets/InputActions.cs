@@ -94,7 +94,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""RightClick"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""c30565aa-5e4e-4ae0-b97c-b2e4600b4661"",
                     ""expectedControlType"": """",
                     ""processors"": """",

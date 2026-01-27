@@ -1,8 +1,20 @@
+using System;
 using Unity.VisualScripting.InputSystem;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
+
+
+	public static Player Instance { get; private set; }
+
+	public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+
+	public class OnSelectedCounterChangedEventArgs : EventArgs
+	{
+		public ClearCounter selectedCounter;
+	}
 
 	[SerializeField] private float moveSpeed = 7f;
 	[SerializeField] private float interactDistance = 2f;
@@ -15,6 +27,14 @@ public class Player : MonoBehaviour
 	still works even if we have stopped within that distance. */
 	private Vector3 lastMoveDirVector;
 
+	private ClearCounter selectedCounter;
+
+	private void Awake()
+	{
+		if (Instance != null) Debug.LogError("There is more than one player instance!");
+		Player.Instance = this;
+	}
+
 	private void Start()
 	{
 		gameInput.OnInteractAction += GameInput_OnInteractAction;
@@ -23,6 +43,9 @@ public class Player : MonoBehaviour
 	private void GameInput_OnInteractAction(object sender, System.EventArgs e)
 	{
 		this.HandleInteractions();
+
+		if (selectedCounter != null) selectedCounter.Interact();
+		else Debug.Log("NULL");
 	}
 
 	public bool IsWalking()
@@ -70,10 +93,11 @@ public class Player : MonoBehaviour
 				raycastHit.transform.TryGetComponent(out ClearCounter clearCounter);
 
 			if (didRayCastHitClearCounter)
-			{
-				clearCounter.Interact();
-			}
+				if (this.selectedCounter != clearCounter)
+					this.SetSelectedCounter(clearCounter);
+				else this.SetSelectedCounter(null);
 		}
+		else this.SetSelectedCounter(null);
 	}
 
 	private void HandleMovement()
@@ -121,6 +145,17 @@ public class Player : MonoBehaviour
 		Vector2 inputVector = gameInput.GetMovementVectorNormalized();
 		Vector3 moveDirVector = new Vector3(inputVector.x, 0f, inputVector.y);
 		return moveDirVector;
+	}
+
+	private void SetSelectedCounter(ClearCounter selectedCounter)
+	{
+
+		this.selectedCounter = selectedCounter;
+
+		OnSelectedCounterChangedEventArgs eventArgs =
+			new OnSelectedCounterChangedEventArgs { selectedCounter = this.selectedCounter };
+
+		OnSelectedCounterChanged?.Invoke(this, eventArgs);
 	}
 
 }

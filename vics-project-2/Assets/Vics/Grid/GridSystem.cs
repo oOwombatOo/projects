@@ -17,12 +17,15 @@ public class GridSystem
 
 		for (int xOrigin = 0; xOrigin < width; xOrigin++)
 		{
-			Debug.Log("X" + xOrigin);
 			for (int yOrigin = 0; yOrigin < height; yOrigin++)
 			{
 				GridSpace gridSpace = new GridSpace(xOrigin, yOrigin, this.cellSize);
 				gridSpaces[xOrigin, yOrigin] = gridSpace;
 			}
 		}
+
+		gridSpaces[5, 5].FocusOn();
 	}
+
+
 }

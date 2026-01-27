@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
 	{
 		if (this.childCamera != null)
 		{
-			GridSpace.OnGridSpaceFocused += GridSpace_FocusOn;
+			GridSpace.OnGridSpaceFocused += gridSpace_FocusOn;
 			Vector3 orthoCameraAngle = new Vector3(35, -45, 0);
 			this.childCamera.transform.localEulerAngles = orthoCameraAngle;
 		}
@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
 	}
 
 
-	public void GridSpace_FocusOn(object sender, GridSpace.OnGridSpaceFocusedEventArgs e)
+	private void gridSpace_FocusOn(object sender, GridSpace.OnGridSpaceFocusedEventArgs e)
 	{
 		GridSpace gridSpace = e.gridSpace;
 		this.FocusOn(gridSpace);

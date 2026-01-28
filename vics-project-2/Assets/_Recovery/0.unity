@@ -20,12 +20,12 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
+  m_AmbientSkyColor: {r: 0.015625, g: 0.015625, b: 0.015625, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.282353, g: 0.2392157, b: 0.5450981, a: 1}
+  m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -678,7 +678,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 1
   m_Range: 20
   m_SpotAngle: 76.11864
   m_InnerSpotAngle: 21.80208
@@ -747,7 +747,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 135, y: 45, z: 0}
---- !u!1 &1475593235
+--- !u!1 &1986967740
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -755,37 +755,34 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1475593237}
-  - component: {fileID: 1475593236}
+  - component: {fileID: 1986967742}
+  - component: {fileID: 1986967741}
   m_Layer: 0
-  m_Name: GridSystem
+  m_Name: Main Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1475593236
+--- !u!114 &1986967741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475593235}
+  m_GameObject: {fileID: 1986967740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 428675693ca8d9474895968ba7de760b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d2a0988b624d402c8bbbaf90f7f3c6d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridSystem
-  xAxisCellCount: 10
-  yAxisCellCount: 10
-  cellSize: 2
---- !u!4 &1475593237
+  m_EditorClassIdentifier: Assembly-CSharp::Testing
+--- !u!4 &1986967742
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475593235}
+  m_GameObject: {fileID: 1986967740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -802,6 +799,6 @@ SceneRoots:
   - {fileID: 611386602}
   - {fileID: 504337927}
   - {fileID: 832575519}
+  - {fileID: 1986967742}
   - {fileID: 651084346}
   - {fileID: 532051039}
-  - {fileID: 1475593237}

@@ -24,8 +24,6 @@ public class GameInput : MonoBehaviour
 	{
 		Vector2 mousePosition = Mouse.current.position.ReadValue();
 
-		Debug.Log("Clicked at x:" + mousePosition.x + ", y:" + mousePosition.y);
-
 		/* This creates a ray from the center of the camera to the given position */
 		Ray ray = Camera.main.ScreenPointToRay(mousePosition);
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.Experimental;
 using UnityEngine;
 
 public class GridSystem : MonoBehaviour
@@ -8,6 +9,7 @@ public class GridSystem : MonoBehaviour
 	[SerializeField] private int yAxisCellCount;
 	[SerializeField] private int zAxisCellCount;
 	[SerializeField] private int cellSize;
+	[SerializeField] private EntityEventChannel entityEventChannel;
 	private BoxCollider boxCollider;
 	private Dictionary<Vector3Int, List<Entity>> entityMap = new Dictionary<Vector3Int, List<Entity>>();
 
@@ -27,16 +29,16 @@ public class GridSystem : MonoBehaviour
 	private void OnEnable()
 	{
 		GameInput.OnRightMouseClick += this.HandleRightMouseClick;
-		Entity.OnEntityPositionChange += this.HandleEntityPositionChange;
-		Entity.OnEntityDestroy += this.HandleEntityDestroy;
+		entityEventChannel.OnPositionChange += this.HandleEntityPositionChange;
+		entityEventChannel.OnDestroy += this.HandleEntityDestroy;
 	}
 
 
 	private void OnDisable()
 	{
 		GameInput.OnRightMouseClick -= this.HandleRightMouseClick;
-		Entity.OnEntityPositionChange -= this.HandleEntityPositionChange;
-		Entity.OnEntityDestroy -= this.HandleEntityDestroy;
+		entityEventChannel.OnPositionChange -= this.HandleEntityPositionChange;
+		entityEventChannel.OnDestroy -= this.HandleEntityDestroy;
 	}
 
 
@@ -107,76 +109,69 @@ public class GridSystem : MonoBehaviour
 	}
 
 
-	private void HandleEntityPositionChange(object sender, Entity.EntityPositionChangeEventArgs eventArgs)
+	private void HandleEntityPositionChange(object sender, PositionChangeEventArgs eventArgs)
 	{
 		GridSystem gridSystemToChange = eventArgs.gridSystem;
-		Entity entity = sender as Entity;
+		Entity entity = eventArgs.entity;
 
-		if (entity != null) // if the cast was successfull
+
+		if (gridSystemToChange == this)
 		{
+			Vector3Int toPosition = eventArgs.toPosition;
+			Vector3Int fromPosition = eventArgs.fromPosition;
 
-			if (gridSystemToChange == this)
+			// ----------------------------------------------------------------------
+			// If this entity previously occupied a space on this grid-system, remove 
+			// that reference since it has now moved. We want to remove-first so we
+			// don't "add it twice" and then remove it if for whatever reason the to
+			// and from cells are the same cell.
+			if (this.entityMap.ContainsKey(fromPosition))
 			{
-				Vector3Int toPosition = eventArgs.toPosition;
-				Vector3Int fromPosition = eventArgs.fromPosition;
-
-				// ----------------------------------------------------------------------
-				// If this entity previously occupied a space on this grid-system, remove 
-				// that reference since it has now moved. We want to remove-first so we
-				// don't "add it twice" and then remove it if for whatever reason the to
-				// and from cells are the same cell.
-				if (this.entityMap.ContainsKey(fromPosition))
+				bool isRemoved = this.entityMap[fromPosition].Remove(entity);
+				if (isRemoved)
 				{
-					bool isRemoved = this.entityMap[fromPosition].Remove(entity);
-					if (isRemoved)
+					if (this.entityMap[fromPosition].Count == 0)
 					{
-						if (this.entityMap[fromPosition].Count == 0)
-						{
-							this.entityMap.Remove(fromPosition); // clean up the map if it contains nothing now
-						}
+						this.entityMap.Remove(fromPosition); // clean up the map if it contains nothing now
 					}
 				}
-				// ---------------------------------------------------------------------
-
-				if (this.IsGridSpaceInRange(toPosition))
-				{
-					//----------------------------------------------------------------------
-					// Add the entity to a List of entities stored at the "to" position...
-					if (!this.entityMap.ContainsKey(toPosition))
-						this.entityMap[toPosition] = new List<Entity>();
-
-					List<Entity> newEntityList = this.entityMap[toPosition];
-
-					newEntityList.Add(entity);
-					// --------------------------------------------------------------------
-				}
-				else
-					throw new System.Exception("Tried to move an Entity to an invalid space");
 			}
+			// ---------------------------------------------------------------------
+
+			if (this.IsGridSpaceInRange(toPosition))
+			{
+				//----------------------------------------------------------------------
+				// Add the entity to a List of entities stored at the "to" position...
+				if (!this.entityMap.ContainsKey(toPosition))
+					this.entityMap[toPosition] = new List<Entity>();
+
+				List<Entity> newEntityList = this.entityMap[toPosition];
+
+				newEntityList.Add(entity);
+				// --------------------------------------------------------------------
+			}
+			else
+				throw new System.Exception("Tried to move an Entity to an invalid space from: " + fromPosition.ToString() + " to: " + toPosition.ToString() + "");
 		}
-		else
-			throw new System.Exception("Non-Entity object used onEntityPositionChange!");
 	}
 
 
-	private void HandleEntityDestroy(object sender, Entity.EntityDestroyEventArgs eventArgs)
+
+	private void HandleEntityDestroy(object sender, DestroyEventArgs eventArgs)
 	{
-		Entity entity = sender as Entity;
+		Entity entity = eventArgs.entity;
 
-		if (entity != null) // if the cast was successfull
+		Vector3Int entityPosition = eventArgs.position;
+
+		if (this.entityMap.ContainsKey(entityPosition))
 		{
-			Vector3Int entityPosition = eventArgs.position;
+			List<Entity> entityList = this.entityMap[entityPosition];
+			entityList.Remove(entity);
 
-			if (this.entityMap.ContainsKey(entityPosition))
+			// Clean up the key if the cell is now empty
+			if (this.entityMap[entityPosition].Count == 0)
 			{
-				List<Entity> entityList = this.entityMap[entityPosition];
-				entityList.Remove(entity);
-
-				// Clean up the key if the cell is now empty
-				if (this.entityMap[entityPosition].Count == 0)
-				{
-					this.entityMap.Remove(entityPosition);
-				}
+				this.entityMap.Remove(entityPosition);
 			}
 		}
 	}

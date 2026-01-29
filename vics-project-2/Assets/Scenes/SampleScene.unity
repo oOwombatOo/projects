@@ -164,7 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcb79a537d49bd51a846f549f4b6a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
-  currentGridSystem: {fileID: 1475593236}
+  gridSystem: {fileID: 1475593236}
+  entityEventChannel: {fileID: 11400000, guid: 277764b8a5e2887fb90e759844831728, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +939,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridSystem
   xAxisCellCount: 10
   yAxisCellCount: 10
+  zAxisCellCount: 1
   cellSize: 2
+  entityEventChannel: {fileID: 11400000, guid: 277764b8a5e2887fb90e759844831728, type: 2}
 --- !u!4 &1475593237
 Transform:
   m_ObjectHideFlags: 0

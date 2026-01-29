@@ -6,24 +6,7 @@ public class Entity : MonoBehaviour
 
 	private Vector3Int position;
 	[SerializeField] private GridSystem gridSystem;
-
-
-
-	public static event EventHandler<EntityPositionChangeEventArgs> OnEntityPositionChange;
-
-	public class EntityPositionChangeEventArgs : EventArgs
-	{
-		public GridSystem gridSystem;
-		public Vector3Int fromPosition;
-		public Vector3Int toPosition;
-	}
-
-	public static event EventHandler<EntityDestroyEventArgs> OnEntityDestroy;
-
-	public class EntityDestroyEventArgs : EventArgs
-	{
-		public Vector3Int position;
-	}
+	[SerializeField] private EntityEventChannel entityEventChannel;
 
 
 	private void Start()
@@ -35,29 +18,37 @@ public class Entity : MonoBehaviour
 
 	private void OnDestroy()
 	{
-		EntityDestroyEventArgs eventArgs = new EntityDestroyEventArgs()
+		DestroyEventArgs eventArgs = new DestroyEventArgs()
 		{
-			position = this.position
+			position = this.position,
+			entity = this
 		};
 
-		OnEntityDestroy?.Invoke(this, eventArgs);
+		entityEventChannel.FireEvent(this, eventArgs);
 	}
 
 
 	public void UpdatePosition(Vector3Int updateDelta)
 	{
 		Vector3Int updatedPosition = this.position + updateDelta;
+		Vector3 moveDirection = ((Vector3)updateDelta).normalized;
 
-		EntityPositionChangeEventArgs eventArgs = new EntityPositionChangeEventArgs()
+
+		PositionChangeEventArgs eventArgs = new PositionChangeEventArgs()
 		{
 			gridSystem = this.gridSystem,
 			toPosition = updatedPosition,
 			fromPosition = this.position,
+			entity = this,
 		};
 
-		this.position = updatedPosition;
+		entityEventChannel.FireEvent(this, eventArgs);
 
-		OnEntityPositionChange?.Invoke(this, eventArgs);
+		transform.forward = Vector3.Slerp(transform.forward, moveDirection, Time.deltaTime * 5f);
+
+		this.position = updatedPosition;
+		Debug.Log(moveDirection);
+		Debug.Log("Position Updated");
 	}
 
 }

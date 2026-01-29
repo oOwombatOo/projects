@@ -149,6 +149,7 @@ public class GridSystem : MonoBehaviour
 
 				newEntityList.Add(entity);
 				// --------------------------------------------------------------------
+				Debug.Log("Entity position recorded, from: " + fromPosition.ToString() + " to: " + toPosition.ToString());
 			}
 			else
 				throw new System.Exception("Tried to move an Entity to an invalid space from: " + fromPosition.ToString() + " to: " + toPosition.ToString() + "");

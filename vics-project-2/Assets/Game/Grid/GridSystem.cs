@@ -10,6 +10,7 @@ public class GridSystem : MonoBehaviour
 	[SerializeField] private int zAxisCellCount;
 	[SerializeField] private int cellSize;
 	[SerializeField] private EntityEventChannel entityEventChannel;
+	[SerializeField] InputEventChannel inputEventChannel;
 	private BoxCollider boxCollider;
 	private Dictionary<Vector3Int, List<Entity>> entityMap = new Dictionary<Vector3Int, List<Entity>>();
 
@@ -28,7 +29,7 @@ public class GridSystem : MonoBehaviour
 
 	private void OnEnable()
 	{
-		GameInput.OnRightMouseClick += this.HandleRightMouseClick;
+		inputEventChannel.OnRightClick += this.HandleRightMouseClick;
 		entityEventChannel.OnPositionChange += this.HandleEntityPositionChange;
 		entityEventChannel.OnDestroy += this.HandleEntityDestroy;
 	}
@@ -36,7 +37,7 @@ public class GridSystem : MonoBehaviour
 
 	private void OnDisable()
 	{
-		GameInput.OnRightMouseClick -= this.HandleRightMouseClick;
+		inputEventChannel.OnRightClick -= this.HandleRightMouseClick;
 		entityEventChannel.OnPositionChange -= this.HandleEntityPositionChange;
 		entityEventChannel.OnDestroy -= this.HandleEntityDestroy;
 	}
@@ -63,9 +64,9 @@ public class GridSystem : MonoBehaviour
 	}
 
 
-	private void HandleRightMouseClick(object sender, GameInput.MousePositionEventArgs mousePosEventArgs)
+	private void HandleRightMouseClick(object sender, RightClickEventArgs rightClickEventArgs)
 	{
-		RaycastHit[] raycastHits = mousePosEventArgs.rayCastHits;
+		RaycastHit[] raycastHits = rightClickEventArgs.rayCastHits;
 
 		int rayCastHitsCount = raycastHits.Length;
 

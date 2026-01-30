@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 
 
@@ -25,18 +24,18 @@ public class EntityEventChannel : ScriptableObject
 
 	public event EventHandler<PositionChangeEventArgs> OnPositionChange;
 
-	public void FireEvent(object sender, PositionChangeEventArgs e)
+	public void FireEvent(object sender, PositionChangeEventArgs eventArgs)
 	{
-		OnPositionChange?.Invoke(sender, e);
+		OnPositionChange?.Invoke(sender, eventArgs);
 	}
 
 	// ------------------------------------------------------------------------
 
 	public event EventHandler<DestroyEventArgs> OnDestroy;
 
-	public void FireEvent(object sender, DestroyEventArgs e)
+	public void FireEvent(object sender, DestroyEventArgs eventArgs)
 	{
-		OnDestroy?.Invoke(sender, e);
+		OnDestroy?.Invoke(sender, eventArgs);
 	}
 
 	// ------------------------------------------------------------------------

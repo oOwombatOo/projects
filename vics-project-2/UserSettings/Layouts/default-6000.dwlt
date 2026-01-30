@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 5130
-    y: 37
+    x: 5133
+    y: 40
     width: 1894
     height: 1002
   m_ShowMode: 4
@@ -419,8 +419,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "UnityEditor.MainToolbarWindow\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 5133
-    y: 65
+    x: 0
+    y: 0
     width: 1894
     height: 36
   m_SerializedDataModeController:
@@ -790,8 +790,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 5133
-    y: 101
+    x: 0
+    y: 24
     width: 993
     height: 535
   m_SerializedDataModeController:
@@ -1546,8 +1546,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 6127
-    y: 101
+    x: 995
+    y: 24
     width: 899
     height: 535
   m_SerializedDataModeController:
@@ -1597,8 +1597,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Console\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 5133
-    y: 662
+    x: 0
+    y: 24
     width: 713
     height: 359
   m_SerializedDataModeController:
@@ -1635,8 +1635,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Project\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 5847
-    y: 662
+    x: 715
+    y: 24
     width: 1179
     height: 359
   m_SerializedDataModeController:
@@ -1688,11 +1688,6 @@ MonoBehaviour:
     - m_Data: 0
     - m_Data: 880
     - m_Data: 968
-    - m_Data: 62682
-    - m_Data: 62684
-    - m_Data: 62686
-    - m_Data: 62688
-    - m_Data: 62690
     - m_Data: 62692
     - m_Data: 62694
     - m_Data: 62696
@@ -1705,6 +1700,12 @@ MonoBehaviour:
     - m_Data: 62710
     - m_Data: 62712
     - m_Data: 62714
+    - m_Data: 62716
+    - m_Data: 62718
+    - m_Data: 62720
+    - m_Data: 62722
+    - m_Data: 62724
+    - m_Data: 62726
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1740,11 +1741,6 @@ MonoBehaviour:
     - m_Data: 0
     - m_Data: 880
     - m_Data: 968
-    - m_Data: 62682
-    - m_Data: 62684
-    - m_Data: 62686
-    - m_Data: 62688
-    - m_Data: 62690
     - m_Data: 62692
     - m_Data: 62694
     - m_Data: 62696
@@ -1757,11 +1753,16 @@ MonoBehaviour:
     - m_Data: 62710
     - m_Data: 62712
     - m_Data: 62714
-    - m_Data: 63254
+    - m_Data: 62716
+    - m_Data: 62718
+    - m_Data: 62720
+    - m_Data: 62722
+    - m_Data: 62724
+    - m_Data: 62726
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Entity
-      m_OriginalName: Entity
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
@@ -1769,10 +1770,10 @@ MonoBehaviour:
         width: 0
         height: 0
       m_UserData:
-        m_Data: 42828
+        m_Data: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 11}

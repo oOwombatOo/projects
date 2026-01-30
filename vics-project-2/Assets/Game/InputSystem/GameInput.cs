@@ -5,13 +5,8 @@ using UnityEngine.InputSystem;
 public class GameInput : MonoBehaviour
 {
 
+	[SerializeField] InputEventChannel inputEventChannel;
 	private InputActions inputActions;
-	public static event EventHandler<MousePositionEventArgs> OnRightMouseClick;
-
-	public class MousePositionEventArgs : EventArgs
-	{
-		public RaycastHit[] rayCastHits;
-	}
 
 	void Awake()
 	{
@@ -20,7 +15,7 @@ public class GameInput : MonoBehaviour
 		InputSystem.EnableDevice(Mouse.current); // No idea why this is required - Mouse not detected without it.
 	}
 
-	private void RightMouseButton_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+	private void HandleRightClick(UnityEngine.InputSystem.InputAction.CallbackContext obj)
 	{
 		Vector2 mousePosition = Mouse.current.position.ReadValue();
 
@@ -31,18 +26,19 @@ public class GameInput : MonoBehaviour
 		and stops after it hits the first object. */
 		RaycastHit[] rayCastHits = Physics.RaycastAll(ray);
 		int hitCount = rayCastHits.Length;
-		MousePositionEventArgs eventArgs = new MousePositionEventArgs() { rayCastHits = rayCastHits };
-		OnRightMouseClick?.Invoke(this, eventArgs);
+		RightClickEventArgs rightClickEventArgs = new RightClickEventArgs() { rayCastHits = rayCastHits };
+		inputEventChannel.FireEvent(this, rightClickEventArgs);
+
 	}
 
 	private void OnEnable()
 	{
-		inputActions.UI.RightClick.performed += this.RightMouseButton_performed;
+		inputActions.UI.RightClick.performed += this.HandleRightClick;
 	}
 
 	private void OnDisable()
 	{
-		inputActions.UI.RightClick.performed -= this.RightMouseButton_performed;
+		inputActions.UI.RightClick.performed -= this.HandleRightClick;
 	}
 
 }

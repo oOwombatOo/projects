@@ -1,5 +1,4 @@
-using System;
-using Unity.VisualScripting;
+using UnityEditor.Toolbars;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -7,7 +6,7 @@ public class Entity : MonoBehaviour
 
 	private Vector3Int startPosition;
 	private Vector3Int targetPosition;
-	private float oneUnitMoveTimeSec = 1f;
+	private float oneGameMeterMoveTimeSsec = 0.5f; // one "game meter" should be half a square. i.e. each standard grid space is 2m.
 	private float currentMoveTime = 0f;
 	private bool isMoving = false;
 	[SerializeField] private GridSystem gridSystem;
@@ -22,7 +21,7 @@ public class Entity : MonoBehaviour
 		this.startPosition = Vector3Int.RoundToInt(this.transform.position);
 
 		// testing purposes only
-		Vector3Int target = new Vector3Int(8, 5, 0);
+		Vector3Int target = new Vector3Int(8, 7, 0);
 		this.MoveTo(target);
 	}
 
@@ -40,9 +39,11 @@ public class Entity : MonoBehaviour
 		if (isMoving) return;
 
 		startPosition = Vector3Int.RoundToInt(transform.position);
-		targetPosition = newTarget * gridSystem.GetCellSize();
+		targetPosition = newTarget;
 		currentMoveTime = 0f;
 		isMoving = true;
+		float moveDistance = Vector3.Distance(startPosition, targetPosition);
+		Debug.Log(moveDistance + "m in " + (moveDistance * oneGameMeterMoveTimeSsec) + "sec");
 	}
 
 
@@ -54,7 +55,7 @@ public class Entity : MonoBehaviour
 
 		float moveDistance = Vector3.Distance(this.startPosition, this.targetPosition);
 
-		float currentMoveTimeSec = moveDistance * oneUnitMoveTimeSec;
+		float currentMoveTimeSec = moveDistance * oneGameMeterMoveTimeSsec;
 
 		// This catch block is for edge-case scenarios, for example if for some reason, the
 		// start position and end position are the same, the this.currentMoveTime will be zero
@@ -117,6 +118,7 @@ public class Entity : MonoBehaviour
 			fromPosition = this.startPosition,
 			entity = this,
 		};
+		Debug.Log(this.targetPosition.ToString());
 
 		entityEventChannel.FireEvent(this, eventArgs);
 	}
